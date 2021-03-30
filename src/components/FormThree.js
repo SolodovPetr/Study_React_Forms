@@ -2,7 +2,7 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage  } from 'formik';
 import * as Yup from "yup";
 
-import CustomField from './components/formik/CustomField';
+import CustomField from './formik/CustomField';
 
 const FormThree = () => {
 
