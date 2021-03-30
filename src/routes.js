@@ -3,7 +3,7 @@ import { Switch, Route, BrowserRouter } from 'react-router-dom';
 
 import Header from './header';
 import FormOne from './formOne';
-import FormTwo from './formtwo';
+import FormTwo from './formTwo';
 import FormThree from './formThree';
 
 class Routes extends Component {
