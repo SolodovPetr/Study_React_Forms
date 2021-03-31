@@ -9,6 +9,7 @@ const Header = () => (
                 <NavLink className="nav-item nav-link p-2 " to="/" exact>Form One</NavLink>
                 <NavLink className="nav-item nav-link p-2 " to="/formtwo">Form Two</NavLink>
                 <NavLink className="nav-item nav-link p-2 " to="/formthree">Form Three</NavLink>
+                <NavLink className="nav-item nav-link p-2 " to="/formfour">Form Four</NavLink>
             </div>
         </nav>
     </div>
