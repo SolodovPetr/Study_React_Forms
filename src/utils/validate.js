@@ -20,5 +20,12 @@ export const validate = field => {
         valid = isValid ? valid : [ isValid, message ];
     }
 
+    // Minimal number
+    if ( field.validation.minNum ) {
+        const isValid = field.value.trim() >= field.validation.minNum;
+        const message =  isValid ? '' : `Minimal number is ${field.validation.minNum}`;
+        valid = isValid ? valid : [ isValid, message ];
+    }
+
     return valid;
 }

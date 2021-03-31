@@ -6,6 +6,7 @@ import { validate } from '../utils/validate';
 export default class FormFour extends Component {
 
     state = {
+        maxAge: 101,
         loading: false,
         formData: {
             name: {
@@ -39,8 +40,45 @@ export default class FormFour extends Component {
                 valid: false,
                 touched: false,
                 validationMessage: ''
+            },
+            age: {
+                element: 'select',
+                value: '',
+                config: {
+                    name: 'age_input'
+                },
+                validation: {
+                    required: true,
+                    minNum: 20
+                },
+                valid: false,
+                touched: false,
+                validationMessage: ''
+            },
+            message: {
+                element: 'textarea',
+                value: '',
+                config: {
+                    name: 'message_input',
+                    rows: 3,
+                    placeholder: 'Please, add your message'
+                },
+                validation: {
+                    required: true
+                },
+                valid: false,
+                touched: false,
+                validationMessage: ''
             }
         }
+    }
+
+    generateOptions( max ) {
+        let options = [];
+        for( let i = 1; i < max; i++) {
+            options.push( <option key={i} value={i}>{i}</option> );
+        }
+        return options;
     }
 
     updateForm = field => {
@@ -131,9 +169,29 @@ export default class FormFour extends Component {
                     </div>
 
                     <div className="form-group">
-                        <label htmlFor="name">Lastname</label>
+                        <label htmlFor="lastname">Lastname</label>
                         <FormField id="lastname"
                                    fieldData={this.state.formData.lastname}
+                                   change={ this.updateForm }
+                        />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="age">Age</label>
+                        <FormField id="age"
+                                   fieldData={this.state.formData.age}
+                                   change={ this.updateForm } >
+
+                            <option value="">Select age</option>
+                            { this.generateOptions(this.state.maxAge) }
+
+                        </FormField>
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="message">Message</label>
+                        <FormField id="message"
+                                   fieldData={this.state.formData.message}
                                    change={ this.updateForm }
                         />
                     </div>

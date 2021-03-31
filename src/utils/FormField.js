@@ -1,6 +1,6 @@
 import React from 'react';
 
-const FormField = ({fieldData, id, change}) => {
+const FormField = ({fieldData, id, change, children}) => {
 
     const showErrorMessage = () => {
         let message = null;
@@ -29,12 +29,44 @@ const FormField = ({fieldData, id, change}) => {
         </>
     )
 
+    const selectTemplate = fieldData => (
+        <>
+            <select { ...fieldData.config }
+                   value={fieldData.value}
+                   className="form-control"
+                   onChange={ e => change({e, id, blur: false}) }
+                   onBlur={ e => change({e, id, blur: true}) }
+            >
+                { children }
+            </select>
+            { showErrorMessage() }
+        </>
+    )
+
+    const textareaTemplate = fieldData => (
+        <>
+            <textarea { ...fieldData.config }
+                   value={fieldData.value}
+                   className="form-control"
+                   onChange={ e => change({e, id, blur: false}) }
+                   onBlur={ e => change({e, id, blur: true}) }
+            >{fieldData.value}</textarea>
+            { showErrorMessage() }
+        </>
+    )
+
     const renderTemplate = () => {
         let template = '';
 
         switch (fieldData.element) {
             case 'input':
                 return inputTemplate(fieldData);
+
+            case 'select':
+                return selectTemplate(fieldData);
+
+            case 'textarea':
+                return textareaTemplate(fieldData);
 
             default:
                 return template;
