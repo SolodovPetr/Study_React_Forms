@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import FormField from '../utils/FormField';
+import { validate } from '../utils/validate';
 
 export default class FormFour extends Component {
 
@@ -16,7 +17,8 @@ export default class FormFour extends Component {
                     placeholder: 'Enter your name'
                 },
                 validation: {
-                    required: true
+                    required: true,
+                    min: 3
                 },
                 valid: false,
                 touched: false,
@@ -31,7 +33,10 @@ export default class FormFour extends Component {
         // set field value on input change
         newFieldData.value = field.e.target.value;
 
-        // TODO: validation
+        // validation
+        const [ isValid, validationMessage ] = validate(newFieldData);
+        newFieldData.valid = isValid;
+        newFieldData.validationMessage = validationMessage;
 
         // set touched on blur
         if (field.blur) {
